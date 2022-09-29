@@ -6,9 +6,9 @@
 update:; forge update
 
 # Build & test
-build  :; forge build --sizes --via-ir
-test   :; forge test -vvv --rpc-url=${ETH_RPC_URL} --fork-block-number ${BLOCK_NUMBER} --via-ir
-trace   :; forge test -vvvv --rpc-url=${ETH_RPC_URL} --fork-block-number ${BLOCK_NUMBER} --via-ir
+build  :; forge build --sizes
+test   :; forge test -vvv --rpc-url=${ETH_RPC_URL} --fork-block-number ${BLOCK_NUMBER}
+trace   :; forge test -vvvv --rpc-url=${ETH_RPC_URL} --fork-block-number ${BLOCK_NUMBER}
 clean  :; forge clean
 snapshot :; forge snapshot
 
@@ -17,8 +17,10 @@ download :; ETHERSCAN_API_KEY=${ETHERSCAN_API_KEY} cast etherscan-source -d src/
 rinkeby-download :; ETHERSCAN_API_KEY=${ETHERSCAN_API_KEY} cast etherscan-source -c rinkeby -d src/etherscan/${address} ${address} 
 
 # deploy
-rinkeby-deploy :; forge script script/RedeemFeiPayload.s.sol:RedeemFeiDeployScript --rpc-url=${RINKEBY_RPC_URL} --private-key ${PRIVATE_KEY} --broadcast --verify --via-ir
+rinkeby-deploy :; forge script script/RedeemFeiPayload.s.sol:RedeemFeiDeployScript --rpc-url=${RINKEBY_RPC_URL} --private-key ${PRIVATE_KEY} --broadcast --verify
 
-deploy :;  forge script script/RedeemFeiPayload.s.sol:RedeemFeiDeployScript --rpc-url=${ETH_RPC_URL} --ledger --sender 0xde30040413b26d7aa2b6fc4761d80eb35dcf97ad --broadcast --verify --via-ir
+deploy :;  forge script script/RedeemFeiPayload.s.sol:RedeemFeiDeployScript --rpc-url=${ETH_RPC_URL} --ledger --sender 0xde30040413b26d7aa2b6fc4761d80eb35dcf97ad --broadcast --verify
 
-submit :;  forge script script/RedeemFeiSubmission.s.sol:FeiRedeemSubmitScript --rpc-url=${ETH_RPC_URL} --private-key ${PRIVATE_KEY} --broadcast --via-ir
+submit :;  forge script script/RedeemFeiSubmission.s.sol:FeiRedeemSubmitScript --rpc-url=${ETH_RPC_URL} --private-key ${PRIVATE_KEY} --broadcast
+
+verify :; forge verify-contract --compiler-version 0.8.11 0xE0F926b45A68514FaE901b9F07201Ce5F9AaF7c7 ./src/AFeiToDaiSwapper.sol:AFeiToDaiSwapper --watch

@@ -8,9 +8,9 @@ import {AaveGovHelpers, IAaveGov} from "src/test/utils/AaveGovHelpers.sol";
 contract FeiRedeemSubmitScript is Script {
     // TODO these constants will change
     address internal constant DELEGATE_ADDRESS = 0xd2362DbB5Aa708Bc454Ce5C3F11050C016764fA6;
-    address internal constant PAYLOAD = 0xD417d07c20e31F6e129fa68182054B641FbEC8Bd;
+    address internal constant PAYLOAD = 0x8Dfd2255a9d38c182a14f49afCB8a4a4763C6098;
 
-    bytes32 internal constant IPFS_HASH = bytes32(0x0807c1081243b87ff499e9af640afab121f24a693b289c11ea301cad1fd51ccf);
+    bytes32 internal constant IPFS_HASH = bytes32(0x267dbabe4b9efc5aaa4b883462eb81b98ad717f7d3db4720420f2a58aa3b2cf9);
 
     IAaveGov internal constant GOV =
         IAaveGov(0xEC568fffba86c094cf06b22134B23074DFE2252c);
